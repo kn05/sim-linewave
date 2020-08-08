@@ -110,13 +110,17 @@ for i in 1:num
     end
 end
 
-save("C:\\Users\\USER\\Documents\\spring_Swave\\result\\molecule-data.jld", "t", t, "x", x, "v", v, "record", record)
+save("C:\\Users\\USER\\Documents\\linewave\\result\\molecule-data.jld", "t", t, "x", x, "v", v, "record", record)
 
-plot(record[351:700, :], label = ["v = 0.0001" "v = 0.0002" "v = 0.0003" "v = 0.0004" "v = 0.0005" "v = 0.0006" "v = 0.0007" "v = 0.0008" "v = 0.0009" "v = 0.0010"], xlabel = "pos", ylabel = "time")
-savefig("C:\\Users\\USER\\Documents\\spring_Swave\\result\\molecule-record.png")
-p = Progress(num*(length(t)-1))
+plot(record[351:400, :], xlabel = "pos", ylabel = "time")
+savefig("C:\\Users\\USER\\Documents\\linewave\\result\\molecule-record.png")
+
+plot( x[1, :, 400, 10], x[2, :, 400, 10] )
+
+p2 = Progress(num*(length(t)-1))
 for i in 1:50:length(t)
     plot(x[1, :, i, 1], x[2, :, i, 1], title = "molecule, time"*string(i*h), label = "v = 0.0001, n=701", ylims = (-0.01,0.05))
-    savefig("C:\\Users\\USER\\Documents\\spring_Swave\\gif2\\"*string((i-1)/50)*".png")
+    savefig("C:\\Users\\USER\\Documents\\linewave\\gif2\\"*string((i-1)/50)*".png")
+    next!(p2)
 end
 
